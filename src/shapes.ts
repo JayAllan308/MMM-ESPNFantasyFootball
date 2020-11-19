@@ -30,6 +30,16 @@ interface GetNFLGamesForPeriod {
   endDate: string;
 }
 
+interface GetTeamsAtWeek {
+  seasonId: number;
+  scoringPeriodId: number;
+}
+
+interface setCookies {
+  espnS2: string;
+  SWID: string;
+}
+
 interface DraftSettings {
   date: Date;
   type: DraftType;
@@ -42,8 +52,19 @@ interface LeagueMap {
   size: number;
   isPublic: boolean;
   draftSettings: DraftSettings;
-  rosterSettings: LeagueRosterSettings;
-  scheduleSettings: LeagueScheduleSettings;
+  rosterSettings: RosterSettings;
+  scheduleSettings: ScheduleSettings;
+}
+
+interface RosterSettings {
+  lineupPositionCount: object;
+  positionLimits: object;
+  locktime: LineupLockTimes;
+}
+
+enum LineupLockTimes {
+  IndividualGame = "INDIVIDUAL_GAME",
+  FirstGameScoringPeriod = "FIRSTGAME_SCORINGPERIOD",
 }
 
 enum DraftType {
@@ -142,6 +163,25 @@ interface Player {
   injuryStatus: InjuryStatuses;
 }
 
+interface NFLGame {
+  startTime: Date;
+  quarter: number;
+  clock: string;
+  odds: string;
+  broadcaster: string;
+  gameStatus: string;
+  homeTeam: NFLTeam;
+  awayTeam: NFLTeam;
+}
+
+interface NFLTeam {
+  id: number;
+  team: string;
+  teamAbbrev: string;
+  record: string;
+  score: number;
+}
+
 interface GetFreeAgents {
   seasonId: number;
   scoringPeriodId: number;
@@ -151,6 +191,41 @@ interface FreeAgentPlayer {
   player: Player;
   rawStats: PlayerStats;
   projectRawStats: PlayerStats;
+}
+
+interface Team {
+  id: number;
+  abbreviation: string;
+  name: string;
+  logoURL: string;
+  wavierRank: string;
+  roster: Array<Player>;
+  wins: number;
+  losses: number;
+  ties: number;
+  divisionWins: number;
+  divisionLosses: number;
+  divisionTies: number;
+  homeWins: number;
+  homeLosses: number;
+  homeTies: number;
+  awayWins: number;
+  awayLosses: number;
+  awayTies: number;
+  totalPointsScored: number;
+  regularSeasonPointsFor: number;
+  regularSeasonPointsAgainst: number;
+  winningPercentage: number;
+  playoffSeed: number;
+  finalStandingsPosition: number;
+}
+
+interface ScheduleSettings {
+  numberOfRegularSeasonMatchups: number;
+  regularSeasonMatchupLength: number;
+  numberOfPlayoffMatchups: number;
+  playoffMatchupLength: number;
+  numberOfPlayoffTeams: number;
 }
 
 export default interface ESPNClient {
