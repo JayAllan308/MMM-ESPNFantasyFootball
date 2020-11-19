@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+import { Boxscore } from "espn-fantasy-football-api";
+
 (async () => {
   const res = await fetch("https://espn.fantasy.com/api/getboxscore", {
     method: "PATCH",
