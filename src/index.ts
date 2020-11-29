@@ -1,11 +1,7 @@
-import fetch from "node-fetch";
+import { getCurrentWeek } from "./api";
 
-import { Boxscore } from "espn-fantasy-football-api";
-
-(async () => {
-  const res = await fetch("https://espn.fantasy.com/api/getboxscore", {
-    method: "PATCH",
-  });
-  const text = await res.text();
-  console.log(text);
-})();
+async function init() {
+  const currentWeek = await getCurrentWeek();
+  console.log(currentWeek);
+}
+init();

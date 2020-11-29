@@ -15,27 +15,27 @@ interface GetBoxscoreForWeekRequest {
   scoringPeriodId: number;
 }
 
-interface GetHistoricalScoreboardForWeek {
+export interface GetHistoricalScoreboardForWeek {
   seasonId: number;
   matchupPeriodId: number;
   scoringPeriodId: number;
 }
 
-interface GetLeagueInfo {
+export interface GetLeagueInfo {
   seasonId: number;
 }
 
-interface GetNFLGamesForPeriod {
+export interface GetNFLGamesForPeriod {
   startDate: string;
   endDate: string;
 }
 
-interface GetTeamsAtWeek {
+export interface GetTeamsAtWeek {
   seasonId: number;
   scoringPeriodId: number;
 }
 
-interface setCookies {
+export interface SetCookieRequest {
   espnS2: string;
   SWID: string;
 }
@@ -47,7 +47,7 @@ interface DraftSettings {
   canTradeDraftPicks: boolean;
 }
 
-interface LeagueMap {
+export interface LeagueMap {
   name: string;
   size: number;
   isPublic: boolean;
@@ -163,7 +163,7 @@ interface Player {
   injuryStatus: InjuryStatuses;
 }
 
-interface NFLGame {
+export interface NFLGame {
   startTime: Date;
   quarter: number;
   clock: string;
@@ -182,18 +182,18 @@ interface NFLTeam {
   score: number;
 }
 
-interface GetFreeAgents {
+export interface GetFreeAgents {
   seasonId: number;
   scoringPeriodId: number;
 }
 
-interface FreeAgentPlayer {
+export interface FreeAgentPlayer {
   player: Player;
   rawStats: PlayerStats;
   projectRawStats: PlayerStats;
 }
 
-interface Team {
+export interface Team {
   id: number;
   abbreviation: string;
   name: string;
@@ -230,4 +230,5 @@ interface ScheduleSettings {
 
 export default interface ESPNClient {
   getBoxscoreForWeek(req: GetBoxscoreForWeekRequest): Promise<BoxScore[]>;
+  setCookies(req: SetCookieRequest): void;
 }
